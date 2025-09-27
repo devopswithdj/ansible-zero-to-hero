@@ -30,7 +30,12 @@ The options have the following meaning:
 - -o ssh_option Pass -o ssh_option to the SSH client when making the connection. This can be used for overriding configuration settings for the client. See ssh command line options and the possible configuration options in ssh_config.
 - ubuntu@&lt;INSTANCE-IP&gt;: This is the username (ubuntu) and the IP address of the remote server you want to access.
 
-2. **For Servers using Passwords as login mechanism**
+2. **Setup a new key if you do not have any key files setup previosuly**
+```bash
+ssh-keygen -t rsa -b 4096 #this adds a id_rsa.pub file
+```
+
+3. **For Servers using Passwords as login mechanism**
 
 - Simply login to the machine from control node using below command and enter password when prompted
 
@@ -43,7 +48,7 @@ ssh-copy-id <username>@<Instance-IP>
   - Update `PasswordAuthentication yes`
   - Restart SSH -> `sudo systemctl restart ssh`
 
-3. **To Test the Passwordless login use below command**
+4. **To Test the Passwordless login use below command**
 
 ```bash
 ssh <username>@<Instance-IP>

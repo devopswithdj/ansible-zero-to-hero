@@ -1,0 +1,25 @@
+---
+- name: Install and configure Nginx
+  hosts: web
+  become: true # Run tasks with privilege escalation (e.g., sudo)
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: latest
+
+    - name: Ensure Nginx service is running and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Deploy a simple index.html
+      copy:
+        content: "<h1>Welcome to Ansible Nginx!</h1>"
+        dest: /var/www/html/index.html
+        mode: '0644'
