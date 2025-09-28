@@ -1,0 +1,6 @@
+---
+- name: Install and configure Nginx
+  hosts: web
+  become: true # Run tasks with privilege escalation (e.g., sudo)
+  roles:
+    - nginx
