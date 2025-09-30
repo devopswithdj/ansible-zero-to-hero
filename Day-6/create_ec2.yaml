@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  name: EC2 creation Play
+  tasks:
+    - name: Create 2 ubuntu instances and 1 redhat instance
+      amazon.aws.ec2_instance:
+        name: "{{  item.name  }}"
+        key_name: "ansible-learning-key"
+        region: "us-west-2"
+        access_key: "{{  ec2_access_key  }}"
+        secret_key: "{{  ec2_secret_key  }}"
+        instance_type: t2.micro
+        security_group: default
+        network_interfaces:
+          - assign_public_ip: true
+        image_id: "{{  item.ami  }}"
+        tags:
+          Name: "{{ item.name }}"
+          Environment: ansible-learning
+      loop:
+        - { name: "ansible-ec2-01", ami: "ami-06a974f9b8a97ecf2" }
+        - { name: "ansible-ec2-02", ami: "ami-03aa99ddf5498ceb9" }
+        - { name: "ansible-ec2-03", ami: "ami-03aa99ddf5498ceb9" }
