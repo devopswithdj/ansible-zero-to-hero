@@ -1,0 +1,32 @@
+---
+- hosts: all
+  become: true
+  gather_facts: false  # this removes gathering facts thus enabling faster execution & limited data collection.
+  tasks:
+    - name: Make sure openssh and openssl are up to date #this task checks the package and updates, but does not install
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: latest
+      loop:
+       - openssh
+       - openssl
+      ignore_errors: true
+
+    - name: Check if docker is installed
+      ansible.builtin.command: docker --version
+      register: docker_version
+      ignore_errors: true
+    
+    - name: Print the docker version using debug
+      ansible.builtin.debug:
+        var: docker_version
+    
+    - name: Install docker when previous step is failure
+      ansible.builtin.command: "{{ item }}"
+      loop:
+        - apt-get update -y
+        - apt-get install -y docker.io
+        - systemctl start docker
+        - systemctl enable docker
+        - docker --version
+      register: install_output
