@@ -10,7 +10,7 @@ With error handling mechanisms, you can make playbooks more **resilient**, **con
 - [1. Default Behavior](#1-default-behavior)
 - [2. Ignoring Errors](#2-ignoring-errors)
 - [3. Custom Failure Conditions (`failed_when`)](#3-custom-failure-conditions-failed_when)
-- [4. Example Use Case](
+- [4. Example Use Case](#4-example-use-case)
 ---
 
 ## 1. Default Behavior
