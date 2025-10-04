@@ -14,6 +14,7 @@ Welcome to **Ansible Zero to Hero**, a hands-on journey to learn Ansible from sc
 - [Day 6: EC2 Management Playbooks](Day-6/create_ec2.yaml)
 - [Day 7: Error Handling](Day-7/error-handling.md)
 - [Day 8: Ansible Vault](Day-8/ansible-vault.md)
+- [Day 9: Policy As Code](Day-9/Policy-As-Code.md)
 - [Assets](assets/)
 
 ---
@@ -54,6 +55,11 @@ Welcome to **Ansible Zero to Hero**, a hands-on journey to learn Ansible from sc
 5. **AWS Automation**
    - [See Day 5 for EC2 setup and vault usage](Day-5/ec2-creation.md)
 
+6. **Explore various use cases of Ansible**
+   - all following days have various use cases and concepts of Ansible, feel free to explore.
+
+7. **Assets for quick references**
+   - [Exlore Assets folder for actual commands used during executions](assets/)
 ---
 
 ## 💡 References

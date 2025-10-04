@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: List S3 buckets of my AWS account
+      amazon.aws.s3_bucket_info:
+      register: s3_buckets
+
+    - name: Output S3 bucket names
+      debug:
+        var: s3_buckets
+    
+    - name: Apply Bucket versioning to all S3 buckets
+      amazon.aws.s3_bucket:
+        name: "{{ item.name }}"
+        versioning: true
+        state: present
+      loop: "{{ s3_buckets.buckets }}"
+      register: versioning_result
+
+    - name: Output versioning result
+      debug:
+        var: versioning_result
